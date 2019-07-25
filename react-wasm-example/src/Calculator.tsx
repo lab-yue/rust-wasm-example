@@ -1,34 +1,38 @@
 import React, { useEffect, useState } from "react";
-//import load from "../../calculator/src/lib.rs";
-import load from "../../calculator/src/lib.rs";
-type Add = ((a: number, b: number) => number) | undefined;
 
 const Calculator: React.FC = () => {
-  let add: Add = undefined;
-
-  useEffect(() => {
-    load().then((result: any) => {
-      add = result.instance.exports.add;
-    });
-  }, []);
-
   const [a, setA] = useState(0);
   const [b, setB] = useState(0);
+  const [sum, setSum] = useState(0);
+  const [wasm, setWasm] = useState<any>(null);
 
-  const sum = () => {
-    if (!add) {
-      return "";
-    }
-    return add(a, b);
+  const load = async () => {
+    setWasm(await import("calculator"));
   };
+  load();
+  useEffect(() => {
+    if (wasm) {
+      setSum(wasm.add(a, b));
+    }
+  }, [a, b, wasm]);
 
   return (
-    <>
-      <input type="number" onChange={e => setA(parseInt(e.target.value))} />
+    <div className="calculator">
+      <input
+        className="calculator-input"
+        type="number"
+        value={a}
+        onChange={e => setA(parseInt(e.target.value))}
+      />
       +
-      <input type="number" onChange={e => setB(parseInt(e.target.value))} />=
-      {sum()}
-    </>
+      <input
+        className="calculator-input"
+        type="number"
+        value={b}
+        onChange={e => setB(parseInt(e.target.value))}
+      />
+      =<span className="calculator-output">{sum}</span>
+    </div>
   );
 };
 

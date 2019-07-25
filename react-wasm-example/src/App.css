@@ -31,3 +31,26 @@
     transform: rotate(360deg);
   }
 }
+.calculator {
+  color: hotpink;
+}
+.calculator-input {
+  margin: 0 1rem;
+  text-align: center;
+  width: 5rem;
+  background: transparent;
+  color: #fff;
+  font-size: 2rem;
+  border: 0;
+  border-bottom: 2px solid #61dafb;
+}
+
+.calculator-output {
+  font-size: 2rem;
+  margin: 0 1rem;
+  text-align: center;
+}
+
+.calculator-input:focus {
+  outline: none;
+}
