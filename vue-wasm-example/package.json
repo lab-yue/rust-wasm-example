@@ -16,7 +16,6 @@
     "@vue/cli-plugin-typescript": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
     "lint-staged": "^8.1.5",
-    "rust-native-wasm-loader": "^0.8.1",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.4.3",

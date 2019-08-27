@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import load from "../../../calculator/src/lib.rs";
+import load from "calculator";
 
 export default Vue.extend({
   name: "HelloWorld",
@@ -45,10 +45,8 @@ export default Vue.extend({
       return Math.abs(num) < 2 ** 32 - 1;
     }
   },
-  beforeCreate() {
-    load().then((result: any) => {
-      (this as any).add = result.instance.exports.add;
-    });
+  async beforeCreate() {
+    (this as any).add = await import("calculator");
   }
 });
 </script>
